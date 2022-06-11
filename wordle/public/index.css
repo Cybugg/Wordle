@@ -1,0 +1,61 @@
+:root{
+--green: #6aaa64;
+--darkendGreen: #538d4e;
+--yellow: #c9b458;
+--darkendYellow: #b59f3b;
+--lightGray: #d8d8d8;
+--gray: #86888a;
+--darkGray: #939598;
+--white: #fff;
+--black: #212121;
+--orange: #f5793a;
+--blue: #85c0f9;
+--color-tone-1: #ffffff;
+--color-tone-2: #818384;
+--color-tone-3: #565758;
+--color-tone-4: #3a3a3c;
+--color-tone-5: #272729;
+--color-tone-6: #1a1a1b;
+--color-tone-7: #121213;
+}
+
+/* Body styling */
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.wordCrack{
+    background: var(--color-tone-7);
+    min-height: 100vh;
+}
+
+/* Header styling */
+.header{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 5px;
+   color: var(--lightGray);
+   border-bottom: var(--color-tone-4) 1px solid;
+   font-weight: bold;
+}
+.headerComponents{
+    display: flex;
+}
+.title{
+    font-size: 2.2rem;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: var(--white);
+}
+.title a{
+    color: var(--lightGray);
+    text-decoration: none;
+}
+.sideNav{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
