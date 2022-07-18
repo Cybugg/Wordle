@@ -36,7 +36,7 @@ body{
    justify-content: space-between;
    align-items: center;
    padding: 5px;
-   color: var(--lightGray);
+   color: var(--white);
    border-bottom: var(--color-tone-4) 1px solid;
    font-weight: bold;
 }
@@ -50,7 +50,7 @@ body{
     color: var(--white);
 }
 .title a{
-    color: var(--lightGray);
+    color: var(--white);
     text-decoration: none;
 }
 .sideNav{
