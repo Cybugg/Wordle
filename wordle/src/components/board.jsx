@@ -42,11 +42,11 @@ export default function Board() {
   <Letter letterPos={4} attemptVal={4}/>
 </div>
 <div className="roww">
-  <Letter letterPos={0} attemptVal={1}/>
-  <Letter letterPos={1} attemptVal={1}/>
-  <Letter letterPos={2} attemptVal={1}/>
-  <Letter letterPos={3} attemptVal={1}/>
-  <Letter letterPos={4} attemptVal={1}/>
+  <Letter letterPos={0} attemptVal={5}/>
+  <Letter letterPos={1} attemptVal={5}/>
+  <Letter letterPos={2} attemptVal={5}/>
+  <Letter letterPos={3} attemptVal={5}/>
+  <Letter letterPos={4} attemptVal={5}/>
 </div>
  
     </div>

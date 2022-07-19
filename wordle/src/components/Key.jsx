@@ -4,32 +4,18 @@ import { AppContext } from './App'
 
 
 function Key({keyVal,bigKey}) {
-    const {board,setBoard,currAttempt,setCurrAttempt} = useContext(AppContext) 
+    const {onDelete,onSelectLetter,onEnter} = useContext(AppContext) 
 const selectLetter = ()=>{
-    if (keyVal = "ENTER"){
-        if(currAttempt.letterPos !==5){
-    return;
-}
-setCurrAttempt(
-    state => {return({...state,attempt:state.attempt+1,letterPos:0})}
-)}
-    else if(keyVal === "DELETE"){
-
+    if(keyVal === "ENTER"){
+    onEnter()
     }
-else{
-    const newboard = [...board]
-    newboard[currAttempt.attempt][currAttempt.letterPos] = keyVal
-    setBoard(
-        newboard
-    )
-setCurrAttempt(state =>{
-if(state.letterPos === 4){
-    return state
-}
-return({...state,letterPos:state.letterPos+1})
-})
-} 
+    else if(keyVal==="DELETE"){
+   onDelete()
     }
+    else{
+        onSelectLetter(keyVal)
+    }
+}
    
 
   return (
