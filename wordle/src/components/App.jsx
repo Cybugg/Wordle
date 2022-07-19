@@ -11,13 +11,16 @@ import { useState } from "react";
 export const AppContext = createContext()
 function App() {
   const [board,setBoard] = useState(boardDefault);
+  const [currAttempt,setCurrAttempt] = useState({attempt:0,letterPos:0})
   return (
   
     <div className="wordCrack">
       <Header />
-<AppContext.Provider >
+<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt}}>
+  <main>
     <Board />
     <Keyboard />
+  </main>
     </AppContext.Provider>
     
 
