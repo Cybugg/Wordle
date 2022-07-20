@@ -44,7 +44,7 @@ body{
 }
 .title{
     font-size: 2.2rem;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: var(--white);
 }
@@ -85,6 +85,7 @@ margin: 0 auto;
     margin: 2.5px;
     padding: 20.2px;
     font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* keyboard style */
@@ -111,9 +112,33 @@ margin: 0 auto;
 .bigKey{
 width: 65px;
 }
+.active{
+    border: 2px solid var(--color-tone-3);
+    animation:2s vibrate;
+}
+#correct{
+    background: var(--darkendGreen);
+}
+#almost{
+    background: var(--darkendYellow);
+}
+#error{
+    background: var(--color-tone-4);
+}
+.disabled{
+    background: var(--color-tone-4);
+}
 
-
-
+@keyframes vibrate{
+    from{
+    width: 20px;
+    height: 20px;
+    }
+    to{
+        width: 40px;
+        height: 40px;
+    }
+}
 
 @media (max-width:500px) {
     .key{
