@@ -5,7 +5,7 @@ import { AppContext } from './App'
 function GameOver() {
     const {gameOver,setgameOver} = useContext(AppContext)
   return (
-    <div>G</div>
+    <div></div>
   )
 }
 
