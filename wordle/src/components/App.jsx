@@ -9,6 +9,7 @@ import { boardDefault ,generateWordSet} from "./word";
 import { useState } from "react";
 import { useEffect } from "react";
 import Word from '../Bank.txt'
+import GameOver from "./gameOver";
 
 
 
@@ -20,17 +21,20 @@ function App() {
   const [wordset,setWordSet] = useState(new Set())
   const [disabledLetters,setDisabledLetters] = useState([])
   const [gameOver,setGameOver] = useState({gameOver:false,guessedWord:false})
+  const [correctWord,setCorrectWord] = useState("")
 // I want this to happen just once
   useEffect(
     ()=> {generateWordSet(Word).then(words=>{
       console.log(words)
   setWordSet(words["wordSet"]);
+  console.log(words["todaysWord"])
+  setCorrectWord(words["todaysWord"].toUpperCase())
     })}
 ,[]);
 
 
 // The correct word
-const correctWord = "right".toUpperCase()
+
 
 // Actions
 const onSelectLetter = (keyVal)=>{
@@ -61,20 +65,23 @@ return;
 const onEnter = ()=>{
     // Enter Action
     if(currAttempt.letterPos !==5)return;
-
 let currWord ="";
 for(let i = 0;i < 5;i++){
   currWord += board[currAttempt.attempt][i]
 }
-alert(currWord)
-if(correctWord === currWord){
-  alert("Game Ended")
+
+// if user guessed the correct word
+if(correctWord === currWord+"\r"){
+  setGameOver(state =>( {gameOver:true,guessedWord:true}))
+}
+if(currAttempt.attempt === 5){
+  setGameOver({gameOver:true,guessedWord:false})
 }
 if(wordset.has(currWord.toLowerCase()+"\r")){
 setCurrAttempt(
   state => {return({...state,attempt:state.attempt+1,letterPos:0})}
 )
-alert("oya na")
+
 }
 else{
   alert("Word Not Found");
@@ -90,7 +97,7 @@ else{
 <AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver}}>
   <main>
     <Board />
-    <Keyboard />
+   { gameOver.gameOver?<GameOver /> : <Keyboard />}
   </main>
     </AppContext.Provider>
     </div>

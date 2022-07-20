@@ -112,22 +112,36 @@ margin: 0 auto;
 .bigKey{
 width: 65px;
 }
+/* game Over style */
+.gameover{
+color: var(--white);
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 50px;
+}
+/* key intelligence */
 .active{
     border: 2px solid var(--color-tone-3);
     animation:2s vibrate;
 }
 #correct{
     background: var(--darkendGreen);
+    border: 2px solid var(--darkendGreen);
 }
 #almost{
     background: var(--darkendYellow);
+    border: 2px solid var(--darkendYellow);
 }
 #error{
     background: var(--color-tone-4);
+    border: 2px solid var(--color-tone-4);
 }
 .disabled{
     background: var(--color-tone-4);
 }
+
+
 
 @keyframes vibrate{
     from{
