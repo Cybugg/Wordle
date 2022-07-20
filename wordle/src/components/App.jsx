@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Word from '../Bank.txt'
 import GameOver from "./gameOver";
+import Howtoplay from "./Howtoplay";
 
 
 
@@ -22,6 +23,8 @@ function App() {
   const [disabledLetters,setDisabledLetters] = useState([])
   const [gameOver,setGameOver] = useState({gameOver:false,guessedWord:false})
   const [correctWord,setCorrectWord] = useState("")
+  const [displayHow,setDisplayHow] = useState(false)
+
 // I want this to happen just once
   useEffect(
     ()=> {generateWordSet(Word).then(words=>{
@@ -84,17 +87,27 @@ setCurrAttempt(
 
 }
 else{
-  alert("Word Not Found");
+  alert("Please use real engligh word");
 }
-  
-
 }  
+//  function to open how to play game
+const openHowtoPlay = ()=>{
+  setDisplayHow(true)
+}
+
+// cancels all opened fixed components
+const cancel = ()=>{
+  setDisplayHow(false)
+}
+
 
   return (
   
     <div className="wordCrack">
-      <Header />
-<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver}}>
+      
+<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay}}>
+<Header />
+<Howtoplay />
   <main>
     <Board />
    { gameOver.gameOver?<GameOver /> : <Keyboard />}

@@ -25,6 +25,15 @@ body{
     padding: 0;
     box-sizing: border-box;
 }
+p{
+    font-size: 14px;
+    line-height: 15px;
+    font-weight: 600;
+}
+.line{
+    height: 1px;
+}
+
 .wordCrack{
     background: var(--color-tone-7);
     min-height: 100vh;
@@ -43,7 +52,7 @@ body{
     display: flex;
 }
 .title{
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: var(--white);
@@ -60,6 +69,30 @@ body{
     display: flex;
     align-items: center;
     padding: 0 20px;
+}
+/* how to play style */
+.howtoplay{
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.427);
+   display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+}
+.intructions{
+    z-index: 99;
+    position: fixed;
+    max-width: 500px;
+    background: var(--color-tone-7);
+    overflow-y: scroll;
+    height: 100vh;
+    position: absolute;
+    animation: 0.5s vanish-up;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 /* main section */
 main{
@@ -128,20 +161,45 @@ margin-top: 50px;
 #correct{
     background: var(--darkendGreen);
     border: 2px solid var(--darkendGreen);
+    animation:1.5s spin-up ;
 }
 #almost{
     background: var(--darkendYellow);
     border: 2px solid var(--darkendYellow);
+    animation:1.5s spin-up ;
 }
 #error{
     background: var(--color-tone-4);
     border: 2px solid var(--color-tone-4);
+    animation: 1.5s spin-up ;
 }
 .disabled{
     background: var(--color-tone-4);
 }
-
-
+.display{
+    display: block;
+}
+.cancel{
+    text-align: right;
+    cursor: pointer;
+}
+@keyframes vanish-up{
+    from{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to{
+       
+    }
+}
+@keyframes spin-up{
+    from{
+        transform: rotateX(180deg);
+    }
+    to{
+       
+    }
+}
 
 @keyframes vibrate{
     from{
