@@ -6,7 +6,7 @@ import { AppContext } from './App'
 function Key({keyVal,bigKey,disabled}) {
 
     // getting states from context made availablle to the component
-    const {onDelete,onSelectLetter,onEnter} = useContext(AppContext) 
+    const {onDelete,onSelectLetter,onEnter,darkTheme} = useContext(AppContext) 
 const selectLetter = ()=>{
     if(keyVal === "ENTER"){
    return onEnter()
@@ -21,7 +21,7 @@ const selectLetter = ()=>{
    
 
   return (
-    <div className={`key ${bigKey && "bigKey"} ${disabled && "disabled"}`} onClick={selectLetter}>
+    <div className={`key ${bigKey && "bigKey"} ${disabled && "disabled"} `} onClick={selectLetter} id={darkTheme === false && "keyboardLightTheme"}>
         {keyVal}</div>
   )
 }

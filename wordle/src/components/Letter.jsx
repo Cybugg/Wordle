@@ -6,7 +6,7 @@ function Letter({letterPos,attemptVal}) {
 
   // importing the states from context made available to this component
   // (declarations)
-  const  {board,correctWord,currAttempt,disabledLetters,setDisabledLetters} = useContext(AppContext)
+  const  {board,correctWord,currAttempt,disabledLetters,setDisabledLetters,darkTheme} = useContext(AppContext)
   const letter = board[attemptVal][letterPos]; 
 
   // variables testing correctness of a letter
@@ -22,7 +22,7 @@ setDisabledLetters(prev => [...prev,letter])
     },[currAttempt.attempt]
   );
   return (
-    <div className={`letter text-white ${letter !== "" && "active"}`} id={letterState}>{letter}</div>
+    <div className={`letter  ${letter !== "" && "active"} ${darkTheme? "":"boardLightTheme"}`} id={letterState}>{letter}</div>
   )
 }
 

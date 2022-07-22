@@ -4,13 +4,16 @@ import React from 'react'
 import { useContext } from 'react'
 import { AppContext } from './App'
 
+const date = new Date()
+let year = date.getFullYear()
+
 function Howtoplay() {
-    const {displayHow,cancel} = useContext(AppContext)
+    const {displayHow,cancel,darkTheme} = useContext(AppContext)
   return (
       <div className={`howtoplay ${displayHow && "display"}`}>
-         <div className='container p-3 intructions'>
-             <div className="cancel text-right" onClick={cancel}><Cancel /></div>
-        <h6 className='fw-bold text-center'>HOW TO PLAY</h6>
+         <div className={`container-fluid p-3 intructions  ${darkTheme? "":"genLightMode"}`}>
+             <div className="cancel text-right" onClick={cancel}><Cancel  fontSize='medium'/></div>
+        <h6 className='fw-bold text-center pb-1'>HOW TO PLAY</h6>
         <p>Crack the <span className="fw-bold">WORD</span> in six tries</p>
         <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
         <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
@@ -18,7 +21,7 @@ function Howtoplay() {
         <p>Examples</p>
         {/* first example */}
         <div className="example d-flex mb-2">
-        <div className='letter active' id='correct'>W</div>
+        <div className='letter active ' id='correct'>W</div>
         <div className='letter active'>E</div>
         <div className='letter active'>A</div >
         <div className='letter active'>R</div >
@@ -51,7 +54,11 @@ function Howtoplay() {
            You can use this app for entertainment and educational purposes.
         </p>
         <p><Book/> Inspired by The New York Times games</p>
+        <div className="text-end copywright">
+        &copy;Cybug Technologies, {year}
+    </div>
     </div> 
+    
       </div>
     
   )

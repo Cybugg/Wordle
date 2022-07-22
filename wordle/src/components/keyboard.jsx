@@ -10,7 +10,7 @@ export default function Keyboard() {
     const {onSelectLetter,onDelete,onEnter,disabledLetters} = useContext(AppContext)
 
      const keys1 = ["Q","W","E","R","T","Y","U","I","O","P"];
-     const keys2 =["A","S","D","F","G","H","j","K","L"];
+     const keys2 =["A","S","D","F","G","H","J","K","L"];
      const keys3 =["Z","X","C","V","B","N","M"]; 
 const handlekeyboard = useCallback(
   (e)=>{
@@ -49,7 +49,7 @@ const handlekeyboard = useCallback(
 
   return (
     <div className='keyboard mx-auto text-white' onKeyDown={handlekeyboard}>
-      <div className="line1 d-flex">{keys1.map(
+      <div className="line1 d-flex ">{keys1.map(
         key => <Key keyVal={key} disabled={disabledLetters.includes(key)}/>
       )}</div>
       <div className="line2 d-flex">{keys2.map(

@@ -11,20 +11,25 @@ import { useEffect } from "react";
 import Word from '../Bank.txt'
 import GameOver from "./gameOver";
 import Howtoplay from "./Howtoplay";
+import Settings from "./Settings";
+import Subscribe from "./Subscribe";
 
 
 
 export const AppContext = createContext()
 function App() {
   // Declarations
-  const [board,setBoard] = useState(boardDefault);
+  const initialBoard = boardDefault
+  const [board,setBoard] = useState(initialBoard);
   const [currAttempt,setCurrAttempt] = useState({attempt:0,letterPos:0})
   const [wordset,setWordSet] = useState(new Set())
   const [disabledLetters,setDisabledLetters] = useState([])
   const [gameOver,setGameOver] = useState({gameOver:false,guessedWord:false})
   const [correctWord,setCorrectWord] = useState("")
   const [displayHow,setDisplayHow] = useState(false)
-
+  const [displaySettings,setDisplaySettings] = useState(false)
+  const [darkTheme,setdarkTheme] = useState(true)
+  const [refresh,setRefresh] = useState(0)
 // I want this to happen just once
   useEffect(
     ()=> {generateWordSet(Word).then(words=>{
@@ -33,7 +38,7 @@ function App() {
   console.log(words["todaysWord"])
   setCorrectWord(words["todaysWord"].toUpperCase())
     })}
-,[]);
+,[refresh]);
 
 
 // The correct word
@@ -94,20 +99,45 @@ else{
 const openHowtoPlay = ()=>{
   setDisplayHow(true)
 }
-
+// function to open settings
+const openSettings = ()=>{
+  setDisplaySettings(true)
+}
 // cancels all opened fixed components
 const cancel = ()=>{
   setDisplayHow(false)
+  setDisplaySettings(false)
 }
+// switches
+const switchdarkTheme = ()=>{
+  setdarkTheme(!darkTheme)
+}
+
+// play again function
+const freshBoard = [["","","","",""],["","","","",""],["","","","",""],["","","","",""],["","","","",""],["","","","",""]]
+const playAgain = ()=>{
+  setCurrAttempt({attempt:0,letterPos:0})
+  setGameOver({gameOver:false,guessedWord:false})
+  setRefresh(refresh + 1)
+  setBoard(freshBoard)
+}
+
+useEffect(
+  ()=>{setTimeout(
+  openHowtoPlay,1200
+)},[]
+)
 
 
   return (
   
-    <div className="wordCrack">
+    <div className={`wordCrack ${darkTheme?"":"bg-white"}`}>
       
-<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay}}>
+<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain}}>
 <Header />
 <Howtoplay />
+<Settings />
+<Subscribe />
   <main>
     <Board />
    { gameOver.gameOver?<GameOver /> : <Keyboard />}
