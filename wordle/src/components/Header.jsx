@@ -9,13 +9,18 @@ import { useContext } from "react";
 import { AppContext } from "./App";
 
 export default function Header(){
-const {openHowtoPlay,openSettings,darkTheme} = useContext(AppContext)
+const {openHowtoPlay,openSettings,darkTheme,openMenu,openStat} = useContext(AppContext)
 
     return(
         <div className={`header p-1 ${darkTheme?"":"bg-white text-dark"}`}>
-        <div className="headerComponent sideNav"><MenuIcon sx={{padding:"1px",fontSize:"30px",fontWeight:"bolder"}} fontSize='large'/><div onClick={openHowtoPlay}><QuestionMarkIcon sx={{padding:"1px",border:`2px solid  ${darkTheme?"var(--lightGray)":"var(--black)"}`,borderRadius:"50%",fontSize:"20px",margin:"6px"}} fontSize='large'/></div></div>
-        <div className={`headerComponent title`}><a href="" className={`${darkTheme?"":"text-dark"}`}><span className="success">W</span>ord <span className="warning">C</span>rack</a> </div>
-        <div className="headerComponent sideNav"><BarChartRoundedIcon fontSize='large' sx={{padding:"3px",fontSize:"30px"}}/>
+        <div className="headerComponent sideNav">
+          <div onClick={openMenu}><MenuIcon sx={{padding:"1px",fontSize:"30px",fontWeight:"bolder"}} fontSize='large'/></div>
+          <div onClick={e =>e.stopPropagation()}>
+<div onClick={openHowtoPlay}><QuestionMarkIcon sx={{padding:"1px",border:`2px solid  ${darkTheme?"var(--lightGray)":"var(--black)"}`,borderRadius:"50%",fontSize:"20px",margin:"6px"}} fontSize='large'/></div>
+          </div>
+          </div>
+        <div className={`headerComponent title`}><a href="" className={`${darkTheme?"":"text-dark"}`}><span className={`success ${darkTheme === false && "bg-dark"}`}>W</span>ord <span className="warning">C</span>rack</a> </div>
+        <div className="headerComponent sideNav"><div onClick={openStat}><BarChartRoundedIcon fontSize='large' sx={{padding:"3px",fontSize:"30px"}}/></div>
         <div onClick={openSettings}><SettingsIcon sx={{padding:"3px",fontSize:"30px"}} fontSize='large'/></div> </div>
       </div>
     )

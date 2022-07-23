@@ -1,8 +1,10 @@
+import { BarChartRounded } from '@mui/icons-material'
 import { Cancel } from '@mui/icons-material'
 import { Book } from '@mui/icons-material'
 import React from 'react'
 import { useContext } from 'react'
 import { AppContext } from './App'
+import { ClickAwayListener } from "@mui/material";
 
 const date = new Date()
 let year = date.getFullYear()
@@ -11,7 +13,9 @@ function Howtoplay() {
     const {displayHow,cancel,darkTheme} = useContext(AppContext)
   return (
       <div className={`howtoplay ${displayHow && "display"}`}>
-         <div className={`container-fluid p-3 intructions  ${darkTheme? "":"genLightMode"}`}>
+          {/* Note Click away listener can just be in only a component, e.stopPropagation() in all other components will make the m clickable */}
+          <ClickAwayListener onClickAway={cancel}>
+          <div className={`container-fluid p-3 intructions  ${darkTheme? "":"genLightMode"}`} onClick={(e)=>e.stopPropagation()}>
              <div className="cancel text-right" onClick={cancel}><Cancel  fontSize='medium'/></div>
         <h6 className='fw-bold text-center pb-1'>HOW TO PLAY</h6>
         <p>Crack the <span className="fw-bold">WORD</span> in six tries</p>
@@ -48,7 +52,10 @@ function Howtoplay() {
         <p>The letter <span className='fw-bold'>U</span> is not in the word in any spot.</p>
         <hr />
         <p className="fw-bold">
-            Unlike the original Wordle game you can play over and over again.
+           <BarChartRounded /> You can check your score records and perfomance by clicking the stat icon.
+        </p>
+        <p className="fw-bold">
+            Unlike the original Wordle game you can play over and over again in a day.
         </p>
         <p className="fw-bold border-bottom pb-4">
            You can use this app for entertainment and educational purposes.
@@ -58,7 +65,7 @@ function Howtoplay() {
         &copy;Cybug Technologies, {year}
     </div>
     </div> 
-    
+          </ClickAwayListener>
       </div>
     
   )

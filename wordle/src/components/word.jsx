@@ -18,7 +18,6 @@ export const generateWordSet= async (correctWord) => {
         const wordArr = result.split("\n");
       wordSet = new Set(wordArr)
       todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)]
-        console.log(result)
     });
     return { wordSet,todaysWord};
 }

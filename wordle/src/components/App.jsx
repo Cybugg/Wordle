@@ -13,8 +13,9 @@ import GameOver from "./gameOver";
 import Howtoplay from "./Howtoplay";
 import Settings from "./Settings";
 import Subscribe from "./Subscribe";
-
-
+import Statistics from "./Statistics";
+import commentary from "./Commentary"
+import { ClickAwayListener } from "@mui/material";
 
 export const AppContext = createContext()
 function App() {
@@ -30,13 +31,14 @@ function App() {
   const [displaySettings,setDisplaySettings] = useState(false)
   const [darkTheme,setdarkTheme] = useState(true)
   const [refresh,setRefresh] = useState(0)
+  const [menu,setMenu] = useState(false)
+  const [stats,setStats] = useState(false)
+  const [userName,setUserName] = useState("Player")
 // I want this to happen just once
   useEffect(
     ()=> {generateWordSet(Word).then(words=>{
-      console.log(words)
-  setWordSet(words["wordSet"]);
-  console.log(words["todaysWord"])
-  setCorrectWord(words["todaysWord"].toUpperCase())
+        setWordSet(words["wordSet"]);
+        setCorrectWord(words["todaysWord"].toUpperCase())
     })}
 ,[refresh]);
 
@@ -70,6 +72,10 @@ return;
     setBoard(newboard)
     setCurrAttempt(state => {return({...state,letterPos:state.letterPos-1})})
 }  
+
+// score process
+
+
 const onEnter = ()=>{
     // Enter Action
     if(currAttempt.letterPos !==5)return;
@@ -81,10 +87,14 @@ for(let i = 0;i < 5;i++){
 // if user guessed the correct word
 if(correctWord === currWord+"\r"){
   setGameOver(state =>( {gameOver:true,guessedWord:true}))
+ 
+  
 }
+// if user failed to guess the word
 if(currAttempt.attempt === 5){
   setGameOver({gameOver:true,guessedWord:false})
 }
+// normal proceed function
 if(wordset.has(currWord.toLowerCase()+"\r")){
 setCurrAttempt(
   state => {return({...state,attempt:state.attempt+1,letterPos:0})}
@@ -95,19 +105,38 @@ else{
   alert("Please use real engligh word");
 }
 }  
-//  function to open how to play game
-const openHowtoPlay = ()=>{
-  setDisplayHow(true)
-}
-// function to open settings
-const openSettings = ()=>{
-  setDisplaySettings(true)
-}
+
 // cancels all opened fixed components
 const cancel = ()=>{
   setDisplayHow(false)
   setDisplaySettings(false)
+  setMenu(false)
+  setStats(false)
 }
+//  function to open stat
+const openStat = (e)=>{
+  e.stopPropagation()
+  cancel()
+  setStats(true)
+}
+//  function to open how to play game
+const openHowtoPlay = ()=>{
+  cancel()
+  setDisplayHow(true)
+}
+// function to open settings
+const openSettings = (e)=>{
+  e.stopPropagation()
+  cancel()
+  setDisplaySettings(true)
+}
+// function to open menu
+const openMenu = (e)=>{
+  e.stopPropagation()
+  cancel()
+setMenu(!menu)
+}
+
 // switches
 const switchdarkTheme = ()=>{
   setdarkTheme(!darkTheme)
@@ -123,7 +152,7 @@ const playAgain = ()=>{
 }
 
 useEffect(
-  ()=>{setTimeout(
+  (e)=>{setTimeout(
   openHowtoPlay,1200
 )},[]
 )
@@ -131,13 +160,15 @@ useEffect(
 
   return (
   
-    <div className={`wordCrack ${darkTheme?"":"bg-white"}`}>
-      
-<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain}}>
+    <div className={`wordCrack ${darkTheme?"":"bg-white"}`}> 
+<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain,openMenu,menu,setStats,stats,openStat,userName,setUserName}}>
+  {/* Edit and instruction components */}
 <Header />
-<Howtoplay />
-<Settings />
 <Subscribe />
+<Howtoplay />
+<Statistics />
+<Settings />
+  {/* main game component */}
   <main>
     <Board />
    { gameOver.gameOver?<GameOver /> : <Keyboard />}

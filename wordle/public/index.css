@@ -20,13 +20,24 @@
 --lightgray:rgb(209, 209, 209);
 }
 
+
 /* Body styling */
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+.logo-w{
 
+    color: var(--darkendGreen);
+    font-size: 35px;
+    width: 40px;
+}
+.logo-c{
+    color: var(--darkendYellow);
+    font-size: 35px;
+    width: 40px;
+}
 p{
     font-size: 14px;
     line-height: 15px;
@@ -102,12 +113,57 @@ h5{
     left: 0;
     right: 0;
 }
+/* statistics styling*/
+.score-font{
+    color:var(--darkendYellow);
+}
+.stat{
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.427);
+   display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    
+}
+.profile{
+    display: flex;
+    align-items: center;
+}
+.stat-details{
+    font-family:Arial, Helvetica, sans-serif;
+    z-index: 99;
+    position: fixed;
+    max-width: 500px;
+    background: var(--color-tone-6);
+    min-height: 60vh;
+    position: absolute;
+    animation: 0.5s vanish-up;
+    top: 100px;
+    left: 0;
+    right: 0;
+}
+.scores{
+    display: flex;
+    justify-content: space-evenly;
+}
+.score-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.digit{
+    font-size: 40px;
+}
+
 /* settings style */
 .settings{
     font-family:Arial, Helvetica, sans-serif;
     color: var(--white);
     background: rgba(0, 0, 0, 0.427);
-   display: none;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -123,7 +179,6 @@ h5{
     position: absolute;
     animation: 0.5s vanish-up;
     bottom: 0;
-    
     left: 0;
     right: 0;
     border-radius: 10px 10px 0px 0px;
@@ -136,29 +191,75 @@ h5{
 .option a:hover{
     color: var(--gray);
 }
+.setName{
+    border: 0;
+    border-radius: 5px;
+    border: 1px solid var(--color-tone-5);
+}
+.del-btn{
+    border: 0;
+    border-radius: 5px;
+    color:#ff4400;
+    border: 1px solid #ff4400;
+}
 /* subscribe section */
 .subscribe{
-   position: absolute;
-    height: 100vh;
+    position: absolute;
+    height: 90vh;
     width: 300px;
-    background: #1a1a1b;  
+    background: var(--color-tone-7);
+    animation: 0.5s slideInLeft;
+    display: none;  
 }
 .form-sub{
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: 0.5s slideInLeft;
-    /* display: none; */
-
 }
 .box{
     position: inherit;
     width: 50px;
     height: 50px;
-    border: var(--color-tone-3);
-    bottom: 0;
+    border: var(--color-tone-5) 2px solid;
+    right: 0;
+    transition: all ease 5s;
+    margin-top: 50px;
 }
-@keyframes slideInLeft {
+.box1{
+    left: 10px;
+    width: 90px;
+    animation: 15s float infinite;
+}
+.box2{
+   left: 100px;
+   border-radius: 50%;
+   animation: 12s float infinite;
+}
+.box3{
+    right: 10px;
+    animation: 6s float infinite;
+}
+.box4{
+    left: 170px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 40px solid var(--color-tone-5);
+    border-top: 0;
+    animation: 18s float infinite;
+}
+@keyframes float{
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    
+}
+@keyframes slideInLeft{
     from{
         transform: translateX(-100%);
     }
@@ -166,6 +267,7 @@ h5{
 .form-input{
 border: 0;
 width: 90%;
+border: 2px solid var(--color-tone-6);
 border-radius: 5px;
 outline: none;
 }
@@ -209,6 +311,7 @@ margin: 0 auto;
     flex-direction: column;
     align-items: center;
     margin-top: 1px;
+    animation: 0.4s slideIn-left;
 }
 .key{
     width: 43px;
@@ -227,6 +330,11 @@ margin: 0 auto;
 }
 .bigKey{
 width: 65px;
+}
+@keyframes slideIn-left {
+    0%{
+        transform: translateX(100%);
+    }
 }
 /* game Over style */
 .gameover{
@@ -270,7 +378,6 @@ margin-top: 30px;
     display: block;
 }
 .cancel{
-    text-align: right;
     cursor: pointer;
     position: inherit;
     right: 10px;
@@ -288,10 +395,17 @@ margin-top: 30px;
 .copywright{
     color: rgb(118, 118, 118);
     font-size: 13px;
+    cursor: pointer;
     line-height: 5px;
+}
+.copywright:hover{
+    color: var(--color-tone-2);
 }
 .green{
     color: var(--green);
+}
+#delete{
+    color: #ff4400;
 }
 /* light theme components */
 .boardLightTheme{
