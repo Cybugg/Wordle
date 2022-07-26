@@ -26,7 +26,7 @@ const bad =[
     "Not bad"
 ]
 
-const commentary = {
+export const commentary = {
     excellent:excellent,
     veryGood:veryGood,
     good:good,

@@ -22,11 +22,7 @@
 
 
 /* Body styling */
-body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 .logo-w{
 
     color: var(--darkendGreen);
@@ -49,7 +45,13 @@ p{
 
 .wordCrack{
     background: var(--color-tone-7);
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   height: 100vh;
+   position: relative;
+   overflow: hidden;
+   /* border: 2px red solid; */
 }
 h5{
     font-weight: 400;
@@ -92,7 +94,7 @@ h5{
     color: var(--white);
     background: rgba(0, 0, 0, 0.427);
    display: none;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -102,7 +104,7 @@ h5{
 .intructions{
     font-family:Arial, Helvetica, sans-serif;
     z-index: 99;
-    position: fixed;
+    position: absolute;
     max-width: 500px;
     background: var(--color-tone-7);
     overflow-y: scroll;
@@ -164,7 +166,7 @@ h5{
     color: var(--white);
     background: rgba(0, 0, 0, 0.427);
     display: none;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -205,11 +207,14 @@ h5{
 /* subscribe section */
 .subscribe{
     position: absolute;
-    height: 90vh;
     width: 300px;
     background: var(--color-tone-7);
     animation: 0.5s slideInLeft;
     display: none;  
+    top: 0;
+    height: 100vh;
+    left: 0;
+   
 }
 .form-sub{
     display: flex;
@@ -229,6 +234,7 @@ h5{
     left: 10px;
     width: 90px;
     animation: 15s float infinite;
+
 }
 .box2{
    left: 100px;
@@ -247,7 +253,12 @@ h5{
     border-right: 30px solid transparent;
     border-bottom: 40px solid var(--color-tone-5);
     border-top: 0;
-    animation: 18s float infinite;
+    animation: float 18s infinite;
+}
+@keyframes rotate {
+    0%{
+        transform: rotateX(360deg);
+    }
 }
 @keyframes float{
     0%{
@@ -279,17 +290,23 @@ font-family:Georgia, 'Times New Roman', Times, serif;
 }
 /* main section */
 main{
-/* border: 3px red solid; */
-max-width: 500px;
-margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between';
+    
 }
 /* board style */
 .board{
-    width: 250px;
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
 }
 .roww{
     display: flex;
+    align-items: center;
 }
 .letter{
     width: 30px;
@@ -298,7 +315,7 @@ margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2.5px;
+    margin: 2.1px;
     padding: 20.2px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -310,12 +327,11 @@ margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1px;
+    justify-content: center;
     animation: 0.4s slideIn-left;
+    width: 100%;
 }
 .key{
-    width: 43px;
-    height: 58px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -327,9 +343,11 @@ margin: 0 auto;
     font-family:Arial, Helvetica, sans-serif;
     cursor: pointer;
     color: white;
+    
 }
 .bigKey{
 width: 65px;
+max-width: 65px;
 }
 @keyframes slideIn-left {
     0%{
@@ -351,7 +369,7 @@ margin-top: 30px;
 /* key intelligence */
 .active{
     border: 2px solid var(--color-tone-3);
-    animation:2s vibrate;
+    animation:0.2s vibrate;
 }
 #correct{
     background: var(--darkendGreen);
@@ -452,8 +470,8 @@ color: var(--black);
 
 @keyframes vibrate{
     from{
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     }
     to{
         width: 40px;
@@ -466,6 +484,7 @@ color: var(--black);
 @media (max-width:500px) {
     .key{
         width: 42px;
+        max-height: 50px;
     }
     .bigKey{
         width: 65px;
@@ -487,11 +506,55 @@ color: var(--black);
         width: 60px;
         }
 }
+
+
 @media (max-width:465px) {
     .key{
-        width: 35px;
+        width: 20px;
+        min-height: 60px;
+        margin: 2.5px;
     }
     .bigKey{
-        width: 55px;
+        width: 47px;
         }
+    .title{
+        font-size: 17px;
+    }    
+  .letter{
+      width: 62px;
+      height: 62px;
+  }
+}
+@media (max-width:400px) {
+    .key{
+        width: 12px;
+        min-height: 60px;
+        margin: 1.5px;
+    }
+    .bigKey{
+        width: 50px;
+        }
+    .title{
+        font-size: 17px;
+    }    
+  
+}
+@media (max-height:650px){
+    .key{
+        width: 10px;
+        max-height: 20px;
+        margin: 1.5px;
+       
+    }
+    .bigKey{
+        width: 50px;
+        }
+    .title{
+        font-size: 17px;
+    }    
+  .letter{
+      max-width: 30px;
+      width: 30px;
+      max-height: 30px;
+  }
 }

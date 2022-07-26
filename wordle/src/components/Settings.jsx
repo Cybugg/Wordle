@@ -12,11 +12,11 @@ function Settings() {
     const date = new Date()
     let year = date.getFullYear()
 
-    const {displayHow,cancel,displaySettings,darkTheme,switchdarkTheme,userName} = useContext(AppContext)
+    const {displayHow,cancel,displaySettings,darkTheme,switchdarkTheme,userName,bypass,reset} = useContext(AppContext)
   return (
     <div className={`settings  text-white ${displaySettings && "display"}`}>
-        <ClickAwayListener onClickAway={cancel} >
-        <div className={`settings-inner container-fluid pt-3  ${darkTheme? "":"genLightMode"}`} onClick={(e)=>e.stopPropagation()}>
+       
+        <div className={`settings-inner container-fluid pt-3  ${darkTheme? "":"genLightMode"}`} onClick={bypass}>
         <div className="cancel text-right" onClick={cancel}><Cancel fontSize='medium'/></div>
         <h6 className='text-center fw-bold pb-3'>SETTINGS</h6>
         <div className="settings-options">
@@ -71,7 +71,7 @@ function Settings() {
           <div className="copywright" id='delete'>All previous data on your scores will be deleted.</div>
       </div>
         <div className="option">
-         <button className='del-btn'>reset</button>
+         <button className='del-btn' onClick={reset}>reset</button>
       </div>
         </div>
         <hr />
@@ -80,11 +80,10 @@ function Settings() {
             <div className='m-1'><a href="" className={darkTheme?'text-white':'text-dark'}><GitHub /></a></div>
             <div className='m-1'><a href="" className={darkTheme?'text-white':'text-dark'}><LinkedIn /></a></div>
         </div>
-        <div className="text-end copywright">
+        <div className="text-end copywright h6">
         &copy;Cybug Technologies, {year}
     </div>
         </div>
-        </ClickAwayListener>
     </div>
   )
 }

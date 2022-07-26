@@ -5,7 +5,7 @@ import Letter from './Letter'
 export default function Board() {
  
   return (
-    <div className='board mt-2 mx-auto'>
+    <div className='board pt-3 pb-2'>
 <div className="roww">
   <Letter letterPos={0} attemptVal={0}/>
   <Letter letterPos={1} attemptVal={0}/>

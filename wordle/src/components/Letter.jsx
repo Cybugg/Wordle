@@ -12,7 +12,7 @@ function Letter({letterPos,attemptVal}) {
   // variables testing correctness of a letter
   const correct = correctWord[letterPos] === letter
   const almost = !correct && letter !== '' && correctWord.includes(letter)
-  const letterState =  currAttempt.attempt > attemptVal && (correct? "correct":almost?"almost":"error")
+  const letterState =  (currAttempt.attempt > attemptVal && (correct? "correct":almost?"almost":"error")) || currAttempt.attempt === 5
 
   useEffect(
     ()=>{
@@ -22,7 +22,7 @@ setDisabledLetters(prev => [...prev,letter])
     },[currAttempt.attempt]
   );
   return (
-    <div className={`letter  ${letter !== "" && "active"} ${darkTheme? "":"boardLightTheme"}`} id={letterState}>{letter}</div>
+    <div className={`letter ${letter !== "" && "active"} ${darkTheme? "":"boardLightTheme"}`} id={letterState}>{letter}</div>
   )
 }
 

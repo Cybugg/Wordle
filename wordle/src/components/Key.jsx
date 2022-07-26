@@ -11,7 +11,7 @@ const selectLetter = ()=>{
     if(keyVal === "ENTER"){
    return onEnter()
     }
-    else if(keyVal==="DELETE"){
+    else if(keyVal==="DEL"){
    onDelete()
     }
     else{
@@ -21,7 +21,7 @@ const selectLetter = ()=>{
    
 
   return (
-    <div className={`key ${bigKey && "bigKey"} ${disabled && "disabled"} `} onClick={selectLetter} id={darkTheme === false && "keyboardLightTheme"}>
+    <div className={`key ${bigKey && "bigKey"} ${disabled && "disabled"} p-3`} onClick={selectLetter} id={darkTheme === false && "keyboardLightTheme"}>
         {keyVal}</div>
   )
 }

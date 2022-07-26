@@ -4,9 +4,9 @@ import { useContext } from 'react'
 import { AppContext } from './App'
 
 function Subscribe() {
-    const {cancel,menu,darkTheme} = useContext(AppContext)
+    const {cancel,menu,darkTheme,bypass} = useContext(AppContext)
   return (
-    <div className={`subscribe text-white ${menu && "display"} ${darkTheme? "":"genLightMode"}`} onClick={(e)=>e.stopPropagation()}> 
+    <div className={`subscribe text-white ${menu && "display"} ${darkTheme? "":"genLightMode"}`} onClick={bypass}> 
     <div className={`cancel ${darkTheme? "":"genLightMode"}`} onClick={cancel}><Cancel fontSize='medium'/></div>
     <div className='fw-bold container'><span className='logo-w'>W</span><span className='logo-c'>C</span></div>
     

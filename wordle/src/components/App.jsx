@@ -16,6 +16,7 @@ import Subscribe from "./Subscribe";
 import Statistics from "./Statistics";
 import commentary from "./Commentary"
 import { ClickAwayListener } from "@mui/material";
+import { WindowSharp } from "@mui/icons-material";
 
 export const AppContext = createContext()
 function App() {
@@ -34,6 +35,9 @@ function App() {
   const [menu,setMenu] = useState(false)
   const [stats,setStats] = useState(false)
   const [userName,setUserName] = useState("Player")
+  const [timesPlayed,setTimePlayed] = useState(0)
+  const [score,setSCore] = useState(100)
+  const [timesWon,setTimesWon] = useState(0)
 // I want this to happen just once
   useEffect(
     ()=> {generateWordSet(Word).then(words=>{
@@ -42,10 +46,31 @@ function App() {
     })}
 ,[refresh]);
 
+// load state
+useEffect(
+  ()=>{
+    const loadState = JSON.parse(localStorage.getItem("state"))
+    if(loadState !== null){
+       setSCore(loadState.score)
+    setTimePlayed(loadState.timesPlayed)
+    setUserName(loadState.userName)
+    setTimesWon(loadState.timesWon)
+    }
+  },[]
+)
 
-// The correct word
+// save State
+useEffect(
+  ()=>{
+    localStorage.setItem("state",JSON.stringify({userName:userName,timesPlayed:timesPlayed,score:score,timesWon:timesWon}))
+  },[score,timesPlayed,userName]
+)
 
-
+// propagation stop
+const bypass = (e)=>{
+  // does nothing for now
+return;
+}
 // Actions
 const onSelectLetter = (keyVal)=>{
   // All other key Actions
@@ -73,6 +98,12 @@ return;
     setCurrAttempt(state => {return({...state,letterPos:state.letterPos-1})})
 }  
 
+// reset all data
+const reset = ()=>{
+  setSCore(100)
+  setTimePlayed(0)
+  setTimesWon(0)
+}
 // score process
 
 
@@ -87,12 +118,15 @@ for(let i = 0;i < 5;i++){
 // if user guessed the correct word
 if(correctWord === currWord+"\r"){
   setGameOver(state =>( {gameOver:true,guessedWord:true}))
- 
-  
+ setTimePlayed(state=>state+1)
+ setTimesWon(state => state + 1)
+setSCore(state => state + (6 - currAttempt["attempt"]))
 }
 // if user failed to guess the word
-if(currAttempt.attempt === 5){
+if(currAttempt.attempt > 5){
   setGameOver({gameOver:true,guessedWord:false})
+  setTimePlayed(state=>state+1)
+  setSCore(state => state - 2)
 }
 // normal proceed function
 if(wordset.has(currWord.toLowerCase()+"\r")){
@@ -115,7 +149,7 @@ const cancel = ()=>{
 }
 //  function to open stat
 const openStat = (e)=>{
-  e.stopPropagation()
+ 
   cancel()
   setStats(true)
 }
@@ -126,13 +160,13 @@ const openHowtoPlay = ()=>{
 }
 // function to open settings
 const openSettings = (e)=>{
-  e.stopPropagation()
+ 
   cancel()
   setDisplaySettings(true)
 }
 // function to open menu
 const openMenu = (e)=>{
-  e.stopPropagation()
+ 
   cancel()
 setMenu(!menu)
 }
@@ -149,6 +183,7 @@ const playAgain = ()=>{
   setGameOver({gameOver:false,guessedWord:false})
   setRefresh(refresh + 1)
   setBoard(freshBoard)
+  setDisabledLetters([])
 }
 
 useEffect(
@@ -160,20 +195,24 @@ useEffect(
 
   return (
   
-    <div className={`wordCrack ${darkTheme?"":"bg-white"}`}> 
-<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain,openMenu,menu,setStats,stats,openStat,userName,setUserName}}>
+    <div className={`wordCrack ${darkTheme?"":"bg-white"} `}> 
+<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain,openMenu,menu,setStats,stats,openStat,userName,setUserName,bypass,userName,setUserName,timesPlayed,setTimePlayed,score,setSCore,timesWon,setTimesWon,reset}}>
   {/* Edit and instruction components */}
+ 
+
 <Header />
 <Subscribe />
 <Howtoplay />
 <Statistics />
 <Settings />
   {/* main game component */}
-  <main>
-    <Board />
+  <main className="container-fluid">
+     <Board />
    { gameOver.gameOver?<GameOver /> : <Keyboard />}
-  </main>
-    </AppContext.Provider>
+   </main> 
+   </AppContext.Provider>
+  
+   
     </div>
   )
 }

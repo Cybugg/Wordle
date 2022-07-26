@@ -48,7 +48,7 @@ const handlekeyboard = useCallback(
   )
 
   return (
-    <div className='keyboard mx-auto text-white' onKeyDown={handlekeyboard}>
+    <div className='keyboard text-white pt-3' onKeyDown={handlekeyboard}>
       <div className="line1 d-flex ">{keys1.map(
         key => <Key keyVal={key} disabled={disabledLetters.includes(key)}/>
       )}</div>
@@ -62,7 +62,7 @@ const handlekeyboard = useCallback(
           key => <Key keyVal={key} disabled={disabledLetters.includes(key)}/>
         )
         }
-        <Key keyVal={"DELETE"} bigKey={true}/>
+        <Key keyVal={"DEL"} bigKey={true}/>
       </div>
       </div>
   )

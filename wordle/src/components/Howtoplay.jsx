@@ -10,12 +10,12 @@ const date = new Date()
 let year = date.getFullYear()
 
 function Howtoplay() {
-    const {displayHow,cancel,darkTheme} = useContext(AppContext)
+    const {displayHow,cancel,darkTheme,bypass} = useContext(AppContext)
   return (
       <div className={`howtoplay ${displayHow && "display"}`}>
           {/* Note Click away listener can just be in only a component, e.stopPropagation() in all other components will make the m clickable */}
-          <ClickAwayListener onClickAway={cancel}>
-          <div className={`container-fluid p-3 intructions  ${darkTheme? "":"genLightMode"}`} onClick={(e)=>e.stopPropagation()}>
+          
+          <div className={`container-fluid p-3 intructions  ${darkTheme? "":"genLightMode"}`} onClick={bypass} onTouchStartCapture={bypass}>
              <div className="cancel text-right" onClick={cancel}><Cancel  fontSize='medium'/></div>
         <h6 className='fw-bold text-center pb-1'>HOW TO PLAY</h6>
         <p>Crack the <span className="fw-bold">WORD</span> in six tries</p>
@@ -55,6 +55,11 @@ function Howtoplay() {
            <BarChartRounded /> You can check your score records and perfomance by clicking the stat icon.
         </p>
         <p className="fw-bold">
+            - Every player starts with xp of 100xp each.
+           - You get xps ranging from 1-6 from every win.
+           - You lose 2xps when you fail to crack a word
+        </p>
+        <p className="fw-bold">
             Unlike the original Wordle game you can play over and over again in a day.
         </p>
         <p className="fw-bold border-bottom pb-4">
@@ -65,7 +70,6 @@ function Howtoplay() {
         &copy;Cybug Technologies, {year}
     </div>
     </div> 
-          </ClickAwayListener>
       </div>
     
   )
