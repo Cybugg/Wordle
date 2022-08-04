@@ -64,11 +64,11 @@ else{
         <div className="scores container ps-5 pe-5">
             <ScoreItem digit={timesPlayed} label={"Played"} />
             <ScoreItem digit={timesWon} label={"Won"} />
-            <ScoreItem digit={score} label={"Xp"} />
+            <ScoreItem digit={score} label={"Rtp"} />
         </div>
         <div className="rating p-5 pt-2 pb-2">
             <p>Rating:</p>
-        <Rating name="half-rating-read" value={timesPlayed!== 0 ?(score / (timesPlayed + 100))*5 : 0} readOnly size='large'precision={0.5} color='primary'/> <p className="score-label">{timesPlayed !== 0?Math.round((score / (timesPlayed + 100))*5):0}/5</p>
+        <Rating name="half-rating-read" value={timesPlayed!== 0 ?(score / (timesPlayed + 100))*5 : 0} readOnly size='large'precision={0.5} color='primary'/> <p className="score-label">{timesPlayed !== 0?((score / ((timesPlayed*6)+100))*5).toFixed(1):0}/5.0</p>
          <p>{comment}</p>
         </div>
        

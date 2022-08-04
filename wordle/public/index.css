@@ -349,6 +349,7 @@ main{
 width: 65px;
 max-width: 65px;
 }
+
 @keyframes slideIn-left {
     0%{
         transform: translateX(100%);
@@ -438,7 +439,26 @@ color: var(--black);
     background: var(--white);
     color: var(--black);
 }
+.confirm{
+   display: flex;
+}
+.input{
+outline: none;
 
+}
+.confirm-reset{
+    background: var(--color-tone-7);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    border: 2px red solid;
+    position: inherit;
+    width: 100%;
+    z-index: 9999999999999;
+    bottom: 50%;
+}
 @keyframes shake{
     0%{
         opacity: 0;

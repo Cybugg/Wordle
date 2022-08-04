@@ -34,10 +34,13 @@ function App() {
   const [refresh,setRefresh] = useState(0)
   const [menu,setMenu] = useState(false)
   const [stats,setStats] = useState(false)
-  const [userName,setUserName] = useState("Player")
+  const [userName,setUserName] = useState("player")
+  const [inputName,setinputUserName] = useState("")
+  const [editUserName,setEditUserName] = useState(false)
   const [timesPlayed,setTimePlayed] = useState(0)
   const [score,setSCore] = useState(100)
   const [timesWon,setTimesWon] = useState(0)
+  const [resetprev,setResetprev] = useState(false)
 // I want this to happen just once
   useEffect(
     ()=> {generateWordSet(Word).then(words=>{
@@ -55,6 +58,7 @@ useEffect(
     setTimePlayed(loadState.timesPlayed)
     setUserName(loadState.userName)
     setTimesWon(loadState.timesWon)
+    setdarkTheme(loadState.darkTheme)
     }
   },[]
 )
@@ -62,10 +66,14 @@ useEffect(
 // save State
 useEffect(
   ()=>{
-    localStorage.setItem("state",JSON.stringify({userName:userName,timesPlayed:timesPlayed,score:score,timesWon:timesWon}))
-  },[score,timesPlayed,userName]
+    localStorage.setItem("state",JSON.stringify({userName:userName,timesPlayed:timesPlayed,score:score,timesWon:timesWon,darkTheme:darkTheme}))
+  },[score,timesPlayed,userName,darkTheme]
 )
-
+// handleChange
+const handleOnChange = (e)=>{
+const newVal = e.target.value
+setinputUserName(newVal)
+}
 // propagation stop
 const bypass = (e)=>{
   // does nothing for now
@@ -97,12 +105,42 @@ return;
     setBoard(newboard)
     setCurrAttempt(state => {return({...state,letterPos:state.letterPos-1})})
 }  
-
-// reset all data
-const reset = ()=>{
+// confirm name
+const confirmName = ()=>{
+  setUserName(inputName)
+  setEditUserName(false)
+}
+// cancel renaming
+const cancelChangeName = ()=>{
+  setEditUserName(false)
+}
+// edit name
+const editName = ()=>{
+  setEditUserName(true)
+}
+const confirmReset = ()=>{
+const confirm= confirm("Are you sure you want to reset your score records?")
+  confirm()
+  if(confirm){
   setSCore(100)
   setTimePlayed(0)
   setTimesWon(0)
+  alert("Reset Completed Successsfully")
+  }
+  else{
+    alert(
+      "reset cancelled"
+    )
+  }
+  setResetprev(false)
+}
+// cancel reset
+const cancelReset = ()=>{
+  setResetprev(false)
+}
+// reset all data
+const reset = ()=>{
+  setResetprev(true)
 }
 // score process
 
@@ -136,7 +174,7 @@ setCurrAttempt(
 
 }
 else{
-  alert("Please use real engligh word");
+  alert("Please use english word");
 }
 }  
 
@@ -196,7 +234,7 @@ useEffect(
   return (
   
     <div className={`wordCrack ${darkTheme?"":"bg-white"} `}> 
-<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain,openMenu,menu,setStats,stats,openStat,userName,setUserName,bypass,userName,setUserName,timesPlayed,setTimePlayed,score,setSCore,timesWon,setTimesWon,reset}}>
+<AppContext.Provider value={{board,setBoard,currAttempt,setCurrAttempt,onEnter,onSelectLetter,onDelete,correctWord,disabledLetters,setDisabledLetters,gameOver,setGameOver,displayHow,setDisplayHow,cancel,openHowtoPlay,displaySettings,setDisplaySettings,openSettings,darkTheme,setdarkTheme,switchdarkTheme,playAgain,openMenu,menu,setStats,stats,openStat,userName,setUserName,bypass,userName,setUserName,timesPlayed,setTimePlayed,score,setSCore,timesWon,setTimesWon,reset,editUserName,setEditUserName,handleOnChange,inputName,confirmName,cancelChangeName,editName,confirmReset,cancelReset,resetprev}}>
   {/* Edit and instruction components */}
  
 

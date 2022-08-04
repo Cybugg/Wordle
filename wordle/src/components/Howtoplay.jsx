@@ -55,9 +55,9 @@ function Howtoplay() {
            <BarChartRounded /> You can check your score records and perfomance by clicking the stat icon.
         </p>
         <p className="fw-bold">
-            - Every player starts with xp of 100xp each.
-           - You get xps ranging from 1-6 from every win.
-           - You lose 2xps when you fail to crack a word
+            - Every player starts with Rt of 100Rtp each. <br />
+           - You get Rtp ranging from 1-6 from every win. <br />
+           - You lose 2Rtp when you fail to crack a word. <br />
         </p>
         <p className="fw-bold">
             Unlike the original Wordle game you can play over and over again in a day.
