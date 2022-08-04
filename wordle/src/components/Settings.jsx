@@ -65,7 +65,7 @@ function Settings() {
           <h5>Community</h5>
       </div>
         <div className="option">
-          <a href="https://twitter.com/Iam_samkez" className='copywright h5'>Twitter</a>
+          <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj0rbj00635AhVPnaQKHUcpB5oQFnoECAwQAQ&url=https%3A%2F%2Ftwitter.com%2Fhashtag%2Fwordle&usg=AOvVaw1X3HQsgHhQPCDnWPIp_H5S" className='copywright h5'>Twitter</a>
       </div>
         </div>
         <hr />
@@ -74,7 +74,7 @@ function Settings() {
           <h5>Questions?</h5>
       </div>
         <div className="option">
-         <a href="" className='copywright h5'>FAQS</a>
+         <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj0rbj00635AhVPnaQKHUcpB5oQFnoECAwQAQ&url=https%3A%2F%2Ftwitter.com%2Fhashtag%2Fwordle&usg=AOvVaw1X3HQsgHhQPCDnWPIp_H5S" className='copywright h5'>FAQS</a>
       </div>
         </div>
         <hr />
@@ -90,8 +90,8 @@ function Settings() {
         <hr />
         <div className=" d-flex">
             <div className='m-1'><a href="https://twitter.com/Iam_samkez" className={darkTheme?'text-white':'text-dark'}><Twitter /></a></div>
-            <div className='m-1'><a href="" className={darkTheme?'text-white':'text-dark'}><GitHub /></a></div>
-            <div className='m-1'><a href="" className={darkTheme?'text-white':'text-dark'}><LinkedIn /></a></div>
+            <div className='m-1'><a href="https://github.com/Cybugg" className={darkTheme?'text-white':'text-dark'}><GitHub /></a></div>
+            <div className='m-1'><a href="https://www.linkedin.com/in/samuel-timehin-1636331b3/" className={darkTheme?'text-white':'text-dark'}><LinkedIn /></a></div>
         </div>
         <div className="text-end copywright h6">
         &copy;Cybug Technologies, {year}
